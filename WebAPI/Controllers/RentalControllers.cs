@@ -54,9 +54,9 @@ namespace WebAPI.Controllers
             var result = _rentalService.Delete(rental);
             if (result.Success)
             {
-                return Ok(result);
+                return Ok(result.Message);
             }
-            return BadRequest(result);
+            return BadRequest(result.Message);
         }
 
         [HttpGet("getbyid")]
@@ -68,6 +68,24 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+        [HttpGet("getrentaldetaildto")]
+        public IActionResult GetRentalDetailDto()
+        {
+            var result = _rentalService.GetRentalDetailDtos();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("checkrentalcarid")]
+        public IActionResult CheckRentalCarId(int carId)
+        {
+            var result = _rentalService.CheckRentalCarId(carId);
+            return Ok(result);
         }
     }
 }

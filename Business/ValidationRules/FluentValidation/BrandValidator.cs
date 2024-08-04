@@ -14,6 +14,7 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(b => b.BrandName).NotEmpty();
             RuleFor(b => b.BrandName).MaximumLength(15).WithMessage("This brand name long..");
+            
         }
 
     }

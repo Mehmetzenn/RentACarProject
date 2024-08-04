@@ -1,5 +1,6 @@
 ﻿using Business.Abstracts;
 using Business.BusinessAspects.Autofac;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
@@ -19,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
-    public class CarManager : ICarService
+    public class CarManager : ICarService   
     {
         ICarDal _carDal;
         public CarManager(ICarDal carDal)
@@ -47,7 +48,8 @@ namespace Business.Concretes
         [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
+            Thread.Sleep(2000);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),"Araclar Listelendi");
         }
 
         public IDataResult<List<Car>> GetAllByBrand(int id)
@@ -58,6 +60,11 @@ namespace Business.Concretes
         public IDataResult<List<Car>> GetAllByColor(int id)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.ColorId == id));
+        }
+
+        public IDataResult<List<Car>> GetAllByColorAndBrand(int colorId, int brandId)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId && c.ColorId == colorId));
         }
 
         public IDataResult<List<Car>> GetAllByUnitPrice(decimal min, decimal max)
@@ -74,6 +81,14 @@ namespace Business.Concretes
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail());
         }
+
+        public IDataResult<CarDetailDto> GetCarDetailId(int id)
+        {
+   
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetailId(id), Messages.CarDetailIdShow);
+           
+        }
+
 
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)

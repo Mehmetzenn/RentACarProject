@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entities.Concretes
 {
-    public class Rental:IEntity
+    public class Payment : IEntity
     {
         public int Id { get; set; }
-        public int CarId { get; set; }
         public int CustomerId { get; set; }
-        public DateTime RentDate { get; set; }
-        public DateTime? ReturnDate { get; set; }
-
+        public string FullName { get; set; }
+        public string CardNumber { get; set; }
+        public string CVV { get; set; }
+        public int ExpiryMonth { get; set; }
+        public int ExpiryYear { get; set; }
     }
 }

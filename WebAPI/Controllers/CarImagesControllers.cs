@@ -23,7 +23,20 @@ namespace WebAPI.Controllers
         //[HttpPost("add")]
         //public IActionResult Add([FromForm] IFormFile file, [FromForm] CarImage carImage)
         //{
-        //    var result = _carImageService.Add(file, carImage);
+        //    var result = _carImageService.Add(carImage, file);
+
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
+
+        //[HttpPost("update")]
+        //public IActionResult Update([FromForm] CarImage carImage, [FromForm] IFormFile file)
+        //{
+        //    var result = _carImageService.Update(carImage, file);
+
         //    if (result.Success)
         //    {
         //        return Ok(result);
@@ -34,19 +47,9 @@ namespace WebAPI.Controllers
         //[HttpPost("delete")]
         //public IActionResult Delete(CarImage carImage)
         //{
-        //    var carDeleteImage = _carImageService.GetByImageId(carImage.Id).Data;
-        //    var result = _carImageService.Delete(carDeleteImage);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
+        //    var deleteImage = _carImageService.GetById(carImage.Id).Data;
+        //    var result = _carImageService.Delete(carImage);
 
-        //[HttpPost("update")]
-        //public IActionResult Update([FromForm] IFormFile file, [FromForm] CarImage carImage)
-        //{
-        //    var result = _carImageService.Update(file, carImage);
         //    if (result.Success)
         //    {
         //        return Ok(result);
@@ -65,7 +68,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbycarıd")]
+        [HttpGet("getbycarid")]
         public IActionResult GetByCarId(int carId)
         {
             var result = _carImageService.GetByCarId(carId);
@@ -79,7 +82,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyimageid")]
         public IActionResult GetByImageId(int imageId)
         {
-            var result = _carImageService.GetByImageId(imageId);
+            var result = _carImageService.GetByCarId(imageId);
             if (result.Success)
             {
                 return Ok(result);
