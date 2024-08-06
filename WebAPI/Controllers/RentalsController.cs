@@ -7,10 +7,10 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalControllers : ControllerBase
+    public class RentalsController : ControllerBase
     {
         IRentalService _rentalService;
-        public RentalControllers(IRentalService rentalService)
+        public RentalsController(IRentalService rentalService)
         {
             _rentalService = rentalService;
         }
