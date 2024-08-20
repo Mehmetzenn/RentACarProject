@@ -28,11 +28,11 @@ namespace Business.Concretes
             this._carDal = carDal;
         }
 
-        //[CacheRemoveAspect("ICarService.Get")]
-        //[SecuredOperation("product.add,admin")]
+        [CacheRemoveAspect("ICarService.Get")]
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car) 
-        {
+        {   
             _carDal.Add(car);
             return new SuccessResult();
         }
@@ -43,9 +43,9 @@ namespace Business.Concretes
             return new SuccessResult(); 
         }
 
-        //[CacheAspect]
+        [CacheAspect]
 
-        //[PerformanceAspect(5)]
+        [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
             Thread.Sleep(2000);
@@ -89,8 +89,9 @@ namespace Business.Concretes
            
         }
 
-
-        //[ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
+        [SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
             _carDal.Update(car);

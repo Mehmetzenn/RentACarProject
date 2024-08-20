@@ -60,7 +60,7 @@ namespace Business.Concretes
         {
             var rental = _rentalDal.Get(r => r.CarId == carId);
 
-            if (rental != null)
+            if (rental != null && rental.ReturnDate==null)
             {
                 return new ErrorDataResult<Rental>(null,"Araç kiralanmış ");
             }
