@@ -27,7 +27,7 @@ namespace Business.Concretes
         public IResult Add(Rental rental)
         {
             _rentalDal.Add(rental);
-            return new SuccessResult();
+            return new SuccessResult("Araç Kiralandı.");
         }
 
         public IResult Delete(Rental rental)

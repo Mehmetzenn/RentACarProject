@@ -36,7 +36,7 @@ namespace Business.Concretes
             _carDal.Add(car);
             return new SuccessResult();
         }
-
+            
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -44,12 +44,11 @@ namespace Business.Concretes
         }
 
         [CacheAspect]
-
         [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
-            Thread.Sleep(2000);
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),"Araclar Listelendi");
+            Thread.Sleep(1000);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarsListed);
         }
 
         public IDataResult<List<Car>> GetAllByBrand(int id)
@@ -77,6 +76,7 @@ namespace Business.Concretes
             return new SuccessDataResult<Car>(_carDal.Get(c=>c.Id == id));
         }
 
+        [SecuredOperation("product.add,admin")]
         public IDataResult<List<CarDetailDto>> GetCarDetail()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail());

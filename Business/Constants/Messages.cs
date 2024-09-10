@@ -36,6 +36,6 @@ namespace Business.Constants
         public static string UserUpdated = "Kullanıcı Güncellendi";
         public static string UsersListed = "Kullanıcılar Listelendi";
         public static string UserListed = "Kullanıcı Listelendi";
-
+        public static string CarsListed = "Araçlar Listelendi";
     }
 }
